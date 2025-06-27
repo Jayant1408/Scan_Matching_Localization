@@ -166,19 +166,17 @@ The following output was produced during a test run of the localisation programm
 
 ##### Alternatives
 
-* Evaluate the performance of a more-robust scan matching algorithm on real-world data in difficult driving environments (e.g., uneven terrian, harsh weather conditions, occlusions, etc.).
-* Use the quaternion algorithm to estimate the rotation parameters with the Iterative Closest Point (ICP) in $n$ dimensions;
-
+* Evaluate the results of a more robust scan matching algorithms when applied to real-world scenarios involving challenging conditions such as rough terrain, adverse weather, and occlusions.
+* Consider using quaternion-based methods to estimate rotational parameters within the Iterative Closest Point (ICP) framework for higher-dimensional spaces.
 
 ##### Extensions of task
 
-* Experiment with NDT hyperparameters to improve accuracy and reduce time to converge. 
+* Experiment with ICP hyperparameters to improve accuracy and reduce time to converge. 
 
 ## 4. Future Work
 
-* (Completed) Use extraction to move code outside `main` (i.e., create `SetActorsAndBlueprint`, `ProcessScan`, `UpdatePoseAndControl`, `UpdatePoseError` functions).
-* Fine-tune the NDT algorithm hyperparameters.
-* Replace `auto` keyword declaration with explicit typing (note: `CARLA C++ API` uses templates and their own smart pointer implementation).
+* (Completed) Refactored main logic into modular functions (i.e., create `UpdatePoseAndControl`, `UpdatePoseError` functions).
+* Replace instances of the `auto` keyword with explicit type declarations for clarity—especially due to the use of templates and custom smart pointers in the `CARLA C++ API`.
 * Re-organise `helpers.cpp` and `helpers.h` such that the implementation and header files follow proper conventions.
 
 
