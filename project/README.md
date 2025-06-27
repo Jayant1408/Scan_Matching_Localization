@@ -1,7 +1,9 @@
 # Project: Scan Matching Localization
+
 Udacity Self-Driving Car Engineer Nanodegree – Localization Module
 
 ## Introduction
+
 In this project `Scan Matching Localization`, we implementd two 3D scan matching algorithms in C++ in order to localize a simulated vehicle in the `CARLA Simulator`. The scan matching algorithm selected for this project is the `Iterative Closest Point` (ICP).
 
 During the course, we explored the theory behind ICP and implemented it from scratch using `Singular Value Decomposition` (SVD) to estimate the rigid-body transformation parameters. In this project, however, we use the `pcl::IterativeClosestPoint` implementation from the `Point Cloud Library` (PCL) to focus on applying ICP for vehicle pose estimation in realistic driving scenarios.
@@ -10,6 +12,7 @@ The underlying assumption is that a `rigid-body transformation` exists between c
 
 
 ## Core Goals
+
 * Immplement `Iterative Closest Point` (ICP) algorithm to perform 3D scan matching in C++.
 * Evaluate ICP in the `CARLA Simulator` using synthetic LiDAR data and a simulated ego-vehicle.
 * Analyze the effectiveness and limitations of ICP when applied to real-world-inspired driving scenarios.
@@ -50,6 +53,7 @@ In real-world self-driving scenarios, these limitations can lead to misalignment
 
 
 ### Compiling and Executing the project
+
 To perform scan matching using the ICP algorithm, several parameters can be configured in `c3-main.cpp` to control the LiDAR behavior and point cloud resolution:
 
 ```cpp
@@ -65,6 +69,7 @@ const static double kLeafSizeVoxelGrid = 0.5;
 Additionally, LiDAR-specific attributes (e.g., field of view, number of channels, range) are set using the `carla::client::Sensor blueprint sensor.lidar.ray_cast`. These can be configured manually via the `SetLidarAttributes` function or programmatically using the `GetRecommendedValues()` API (not shown here). We compiled and built the project using CMake and run it inside the CARLA environment to visualize ICP-based localization in real-time.
 
 ##### Loading the input scans
+
 To run the ICP-based localization, you must have at least one map point cloud file, such as `map-loop.pcd`, provided in the Udacity workspace or this repository. 
 
 By default, point cloud `.pcd` files should be placed in the root directory of the project. If stored elsewhere, update the path in `c3-main.cpp` accordingly. This path should be relative to the current working directory (`build/` folder containing the executable):
@@ -75,6 +80,7 @@ const static std::string kBasePath = "../";
 ```
 
 ##### Setting the hyperparameters
+
 Several configurable parameters inside `c3-main.cpp` control how ICP performs scan matching:
 ```cpp
 /*** ICP Configuration Hyperparameters ***/
@@ -96,6 +102,7 @@ const static double kRANSACOutlierRejectionThresholdICP = 0.2;  // meters (m)
 ```
 
 ##### Configuring CMAKE
+
 To build the project, edit the `CMakeLists.txt` file to specify the source files:
 
 ```cpp
@@ -106,6 +113,7 @@ where `{FILENAME OF MAIN}` should be `c3-main.cpp` and `{FILENAME OF HELPERS}` s
 
 
 ##### Creating the executable
+
 To build the programme with the configured `CMakeLists.txt` file, first from the project root (e.g., `project/`), create a build directory:
 
 ```console
@@ -120,6 +128,7 @@ Then, navigate to inside the `build` folder and execute the `cmake` build script
 ```
 
 ##### Executing the programme
+
 Once the programme has been compiled successfully, the executable can be run the following command:
 
 ```console
@@ -137,10 +146,12 @@ First, navigate to the project root directory and run the following:
 This should set the CARLA Simulator to headless mode (i.e., disable graphics output) and prevent the programme from incurring any `Segmentation fault (core dumped)` errors.
 
 ##### Using the programme
+
 In order to navigate the ego-vehicle inside the simulator, keyboard input is required. To move the vehicle forward, press the up-arrow key three times (once set the vehicle motion forward plus twice to set the vehicle throttle). To stop the vehicle, press the down-arrow key. Once the vehicle has made a complete stop, press the down-arrow key again to set the car to reverse. From there, use the up-arrow key 2x to increase the vehicle throttle and move the car backwards. To control the steering angle of the vehicle, use the left- and right-arrow keys.
 
 
 #### Results
+
 The following output was produced during a test run of the localisation programme using ICP scan matching, where the ego drove for 170 m and pose error was always under 1.2m and ego was able to continously localize when it is moving at medium speed (3 taps on the up arrow):
 
 <div align="center">
@@ -152,15 +163,19 @@ The following output was produced during a test run of the localisation programm
 </div>
 
 ## 3. Closing Remarks
+
 ##### Alternatives
+
 * Evaluate the performance of a more-robust scan matching algorithm on real-world data in difficult driving environments (e.g., uneven terrian, harsh weather conditions, occlusions, etc.).
 * Use the quaternion algorithm to estimate the rotation parameters with the Iterative Closest Point (ICP) in $n$ dimensions;
 
 
 ##### Extensions of task
+
 * Experiment with NDT hyperparameters to improve accuracy and reduce time to converge. 
 
 ## 4. Future Work
+
 * (Completed) Use extraction to move code outside `main` (i.e., create `SetActorsAndBlueprint`, `ProcessScan`, `UpdatePoseAndControl`, `UpdatePoseError` functions).
 * Fine-tune the NDT algorithm hyperparameters.
 * Replace `auto` keyword declaration with explicit typing (note: `CARLA C++ API` uses templates and their own smart pointer implementation).
