@@ -141,7 +141,7 @@ In order to navigate the ego-vehicle inside the simulator, keyboard input is req
 
 
 #### Results
-The following output was produced during a test run of the localisation programme using ICP scan matching:
+The following output was produced during a test run of the localisation programme using ICP scan matching, where the ego drove for 170 m and pose error was always under 1.2m and ego was able to continously localize when it is moving at medium speed (3 taps on the up arrow):
 
 <div align="center">
 
