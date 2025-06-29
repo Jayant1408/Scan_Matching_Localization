@@ -173,7 +173,7 @@ The following output was produced during a test run of the localisation programm
 
 * Experiment with ICP hyperparameters to improve accuracy and reduce time to converge. 
 
-## 4. Future Work
+## Future Work
 
 * (Completed) Refactored main logic into modular functions (i.e., create `UpdatePoseAndControl`, `UpdatePoseError` functions).
 * Replace instances of the `auto` keyword with explicit type declarations for clarity—especially due to the use of templates and custom smart pointers in the `CARLA C++ API`.

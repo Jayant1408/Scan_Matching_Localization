@@ -1,5 +1,5 @@
 # Project: Scan Matching Localization
-Udacity Self-Driving Car Engineer Nanodegree – Sensor Fusion Module
+Udacity Self-Driving Car Engineer Nanodegree – Localization Module
 
 ## Introduction
 In this project `Scan Matching Localization`, we implementd two 3D scan matching algorithms in C++ in order to localize a simulated vehicle in the `CARLA Simulator`. The scan matching algorithm selected for this project is the `Iterative Closest Point` (ICP).
